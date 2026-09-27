@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    padding:20px;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#87CEEB,#FFF4C2);
+    overflow-y:auto;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.card{
+    width:100%;
+    max-width:850px;
+    margin:30px auto;
+    background:white;
+    border-radius:25px;
+    padding:45px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.card{
+    width:100%;
+    max-width:850px;
+    margin:30px auto;
+    background:white;
+    border-radius:25px;
+    padding:45px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.screen{
+    display:none;
+}
+
+.screen.active{
+    display:block;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome{
+    text-align:center;
+    padding:40px 0;
+}
+
+.welcome-icon{
+    font-size:75px;
+    margin-bottom:20px;
+}
+
+.welcome h1{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.welcome p{
+    color:#555;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+input{
+    width:80%;
+    max-width:450px;
+    padding:15px;
+    border:2px solid #ddd;
+    border-radius:12px;
+    font-size:17px;
+    outline:none;
+    margin-bottom:20px;
+}
+
+input:focus{
+    border-color:#4da6ff;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+h2{
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:17px;
+    line-height:1.7;
+    color:#555;
+}
+
+button{
+    border:none;
+    border-radius:12px;
+    padding:14px 30px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    background:#4da6ff;
+    color:white;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    opacity:0.9;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    background:#f7f9fc;
+    padding:25px;
+    border-radius:18px;
+    margin-bottom:25px;
+}
+
+.intro p{
+    margin-bottom:15px;
+}
+
+/* =========================
+   QUESTIONS
+========================= */
+
+.question-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.question-number{
+    color:#777;
+    font-size:14px;
+}
+
+.progress-container{
+    width:100%;
+    height:10px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:35px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#4da6ff;
+    transition:width 0.3s;
+}
+
+.question{
+    font-size:26px;
+    line-height:1.45;
+    margin-bottom:30px;
+    color:#222;
+}
+
+.answers{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.answer{
+    width:100%;
+    text-align:left;
+    background:#f7f9fc;
+    color:#222;
+    border:2px solid #e2e2e2;
+    font-weight:normal;
+}
+
+.answer:hover{
+    background:#eef6ff;
+    border-color:#4da6ff;
+    transform:none;
+}
+
+.answer.selected{
+    background:#dceeff;
+    border-color:#4da6ff;
+}
+
+.navigation{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+}
+
+.back{
+    background:#ddd;
+    color:#333;
+}
+
+.hidden{
+    visibility:hidden;
+}
+
+/* =========================
+   RESULTS
+========================= */
+
+.results-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.results-subtitle{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.personality-section{
+    margin-bottom:50px;
+}
+
+.personality-section h2,
+.study-section h2{
+    font-size:30px;
+    margin-bottom:25px;
+}
+
+.result{
+    margin-bottom:30px;
+}
+
+.result-header{
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.bar-background{
+    width:100%;
+    height:16px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar{
+    height:100%;
+    background:#4da6ff;
+    border-radius:20px;
+    transition:width:1s;
+}
+
+.level{
+    color:#347fd1;
+    font-weight:bold;
+    margin-top:8px;
+    margin-bottom:8px;
+}
+
+.description{
+    margin-top:5px;
+}
+
+/* =========================
+   STUDY TIPS
+========================= */
+
+.study-section{
+    margin-top:45px;
+    padding-top:40px;
+    border-top:3px solid #eee;
+}
+
+.study-intro{
+    margin-bottom:25px;
+}
+
+.study{
+    background:#f7f9fc;
+    border-radius:18px;
+    padding:25px;
+    margin-top:20px;
+}
+
+.study h3{
+    font-size:22px;
+    margin-bottom:8px;
+    color:#222;
+}
+
+.study-level{
+    color:#347fd1;
+    font-weight:bold;
+    font-size:15px;
+    margin-bottom:12px;
+}
+
+.study p{
+    line-height:1.7;
+}
+
+.restart{
+    display:block;
+    margin:35px auto 0;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    body{
+        padding:10px;
+    }
+
+    .card{
+        padding:25px;
+        margin:10px auto;
+    }
+
+    .welcome h1{
+        font-size:35px;
+    }
+
+    .question{
+        font-size:22px;
+    }
+
+    input{
+        width:100%;
+    }
+
+}
+
+/* FINAL LAYOUT FIX */
+.welcome{
+    width:100%;
+    min-height:560px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px 0;
+}
+
+.welcome-icon{
+    display:block;
+    width:100%;
+    text-align:center;
+    font-size:75px;
+    margin:0 auto 20px;
+}
+
+.welcome h1,
+.welcome p,
+.welcome input,
+.welcome button{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#introScreen{
+    text-align:center;
+}
+
+#introScreen .intro{
+    text-align:left;
+}
+
+#introScreen > button{
+    display:block;
+    margin:0 auto;
+}
+
+#questionScreen{
+    text-align:center;
+}
+
+#questionScreen .question-top{
+    text-align:left;
+}
+
+#questionScreen .answers{
+    text-align:left;
+}
+
+#questionScreen .navigation{
+    text-align:left;
+}
+
+#resultsScreen{
+    text-align:center;
+}
+
+#resultsScreen .result,
+#resultsScreen .study{
+    text-align:left;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<!-- ==================================================
+     NAME SCREEN
+================================================== -->
+
+<div id="nameScreen" class="screen active">
+
+    <div class="welcome">
+
+        <div class="welcome-icon">
+            ☀️
+        </div>
+
+         <h1>Good Morning!</h1>
+
+        <p>
+            Before we begin, what should I call you?
+        </p>
+
+        <input
+            id="nameInput"
+            type="text"
+            placeholder="Enter your name"
+            maxlength="30"
+            autocomplete="off"
+        >
+
+        <br>
+
+        <button onclick="showIntro()">
+            Start
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     INTRO SCREEN
+================================================== -->
+
+<div id="introScreen" class="screen">
+
+    <h2 id="welcomeTitle">
+        Welcome!!!
+    </h2>
+
+    <div class="intro">
+
+        <p>
+            This is a small game inspired by Nicky Case's The Evolution of Trust and uses the O.C.E.A.N. personality model, one of the most widely researched models of personality. O stands for Openness, which shows how curious and open you are to new ideas. C stands for Conscientiousness, which shows how organised and responsible you are. E stands for Extraversion, which shows how outgoing and energetic you are. A stands for Agreeableness, which shows how kind and cooperative you are. N stands for Neuroticism, which shows how emotionally sensitive you are to stress and challenges. Everyone has their own unique combination of these five traits, and that combination can tell us a lot about someone and what works best for them. For that reason, I took all O.C.E.A.N. 5 questions and picked the most valuable ones. After that, I turned the remaining questions into real life situations that you could experience during everyday school life. I did this so you can understand everything better, and so it doesn't feel like you're just taking another personality test. Instead, you can imagine yourself in each scenario. This test will measure whether you're Low, Low to Mid, Mid, Mid to High, or High in each O.C.E.A.N. trait. Based on your results, I'll teach you which study habits work best for you, explain why they work, and give you important personalised tips that are customised specifically to you. So remember to be honest with yourself
+        </p>
+
+    </div>
+
+    <button onclick="startTest()">
+        Begin Test
+    </button>
+
+</div>
+
+
+<!-- ==================================================
+     QUESTION SCREEN
+================================================== -->
+
+<div id="questionScreen" class="screen">
+
+    <div class="question-top">
+
+        <div
+            id="questionNumber"
+            class="question-number"
+        ></div>
+
+    </div>
+
+    <div class="progress-container">
+
+        <div
+            id="progress"
+            class="progress"
+        ></div>
+
+    </div>
+
+    <div
+        id="question"
+        class="question"
+    ></div>
+
+    <div
+        id="answers"
+        class="answers"
+    ></div>
+
+    <div class="navigation">
+
+        <button
+            id="backButton"
+            class="back hidden"
+            onclick="previousQuestion()"
+        >
+            Back
+        </button>
+
+        <button
+            id="nextButton"
+            onclick="nextQuestion()"
+        >
+            Next
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     RESULTS SCREEN
+================================================== -->
+
+<div id="resultsScreen" class="screen">
+
+    <h1 class="results-title">
+        Your Results
+    </h1>
+
+    <p
+        id="resultsSubtitle"
+        class="results-subtitle"
+    ></p>
+
+    <div id="results"></div>
+
+    <button
+        class="restart"
+        onclick="restart()"
+    >
+        Take the Test Again
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   BASIC VARIABLES
+================================================== */
+
+let playerName = "";
+
+let currentQuestion = 0;
+
+let answers = [];
+
+
+/* =====================================
+   QUESTIONS
+
+   O = 5 QUESTIONS = MAX 25
+   C = 6 QUESTIONS = MAX 30
+   E = 4 QUESTIONS = MAX 20
+   A = 3 QUESTIONS = MAX 15
+   N = 5 QUESTIONS = MAX 25
+
+   TOTAL = 23 QUESTIONS
+===================================== */
+
+const questions = [
+
+    {
+        trait:"C",
+        question:
+        "You're packing your school bag for today. Which sounds most like you?",
+        answers:[
+            "I usually forget important things.",
+            "I pack quickly without checking.",
+            "I pack what I think I'll need.",
+            "I double-check everything.",
+            "I prepare extra items just in case."
+        ]
+    },
+
+    {
+        trait:"O",
+        question:
+        "On your way to school, you notice a beautiful tree that most people walk past without noticing. What do you do?",
+        answers:[
+            "I don't notice it.",
+            "I glance at it and keep walking.",
+            "I stop for a moment to look.",
+            "I really admire it.",
+            "I admire it and might even take a photo."
+        ]
+    },
+
+    {
+        trait:"O",
+        question:
+        'Your art teacher asks you to create a drawing based on the theme "A World Without Gravity." How easily can you imagine it?',
+        answers:[
+            "I can't picture it at all.",
+            "I can imagine a little.",
+            "I can imagine some parts.",
+            "I can picture it quite clearly.",
+            "I can imagine it vividly with lots of details."
+        ]
+    },
+
+    {
+        trait:"O",
+        question:
+        "Your teacher leaves the classroom for a few minutes. What are you most likely to do?",
+        answers:[
+            "Stay completely focused on my work.",
+            "Think about what I need to do next.",
+            "Let my mind wander a little.",
+            "Daydream for most of the time.",
+            "Completely lose myself in my imagination."
+        ]
+    },
+
+    {
+        trait:"O",
+        question:
+        "Imagine every school day followed the exact same schedule, activities, and lunch for a whole year. How would you feel?",
+        answers:[
+            "I'd love it.",
+            "I'd mostly enjoy it.",
+            "I wouldn't mind either way.",
+            "I'd get bored after a while.",
+            "I'd really want more variety."
+        ]
+    },
+
+    {
+        trait:"O",
+        question:
+        "For history homework, you're given a difficult article with complex ideas. What's your reaction?",
+        answers:[
+            "I avoid it if I can.",
+            "I don't enjoy reading it.",
+            "It's okay.",
+            "I like the challenge.",
+            "I really enjoy figuring it out."
+        ]
+    },
+
+    {
+        trait:"N",
+        question:
+        "Your science fair project suddenly stops working five minutes before judging begins. What do you do?",
+        answers:[
+            "Stay calm and start solving the problem.",
+            "Feel nervous but keep working.",
+            "Panic a little before getting started.",
+            "Panic a lot and struggle to think.",
+            "Freeze completely."
+        ]
+    },
+
+    {
+        trait:"A",
+        question:
+        "Your best friend asks you to tell them a secret. How likely are you to trust them with it?",
+        answers:[
+            "I wouldn't tell them at all.",
+            "I'd tell them very little.",
+            "I'd tell them some of it.",
+            "I'd tell them most of it.",
+            "I would tell them everything."
+        ]
+    },
+
+    {
+        trait:"A",
+        question:
+        "A student is crying outside your classroom. What's your first reaction?",
+        answers:[
+            "I don't think much about it.",
+            "I notice but keep going.",
+            "I feel a little sad.",
+            "I wonder what happened and hope they're okay.",
+            "I feel really upset for them."
+        ]
+    },
+
+    {
+        trait:"A",
+        question:
+        "Someone has information you need. What do you do?",
+        answers:[
+            "Become friends with them just to get the information.",
+            "Flatter them so they'll tell you.",
+            "Simply ask politely.",
+            "Ask someone else instead.",
+            "Decide not to get involved."
+        ]
+    },
+
+    {
+        trait:"N",
+        question:
+        "Someone starts spreading rumors about you at school. How worried would you feel?",
+        answers:[
+            "Not worried at all.",
+            "Slightly worried.",
+            "Moderately worried.",
+            "Very worried.",
+            "Extremely worried."
+        ]
+    },
+
+    {
+        trait:"N",
+        question:
+        "You have a test today that you don't feel prepared for. How stressed would you be?",
+        answers:[
+            "Not stressed.",
+            "A little stressed.",
+            "Moderately stressed.",
+            "Very stressed.",
+            "Extremely stressed."
+        ]
+    },
+
+    {
+        trait:"N",
+        question:
+        "Your teacher says they need to talk to you tomorrow but doesn't explain why. What do you expect?",
+        answers:[
+            "It's probably something good.",
+            "It's probably okay.",
+            "I'm not sure.",
+            "It's probably bad.",
+            "It's definitely something terrible."
+        ]
+    },
+
+    {
+        trait:"E",
+        question:
+        "A new student joins your class. What do you do?",
+        answers:[
+            "Nothing.",
+            "Smile or say hello.",
+            "Welcome them.",
+            "Start a conversation.",
+            "Invite them to spend time with you later."
+        ]
+    },
+
+    {
+        trait:"E",
+        question:
+        "Your class is assigned a group project. Which role would you naturally choose?",
+        answers:[
+            "I'd rather someone else decide.",
+            "Designer",
+            "Researcher",
+            "Organizer",
+            "Leader"
+        ]
+    },
+
+    {
+        trait:"C",
+        question:
+        "You have an English essay due next week. How would you usually complete it?",
+        answers:[
+            "I leave it until the last minute.",
+            "I start late and rush it.",
+            "I work on it a little at a time.",
+            "I finish it early.",
+            "I make drafts, edit carefully, and submit my best work."
+        ]
+    },
+
+    {
+        trait:"C",
+        question:
+        "You're about to study, but your desk is covered with books, papers, and random items. What do you do?",
+        answers:[
+            "Study without moving anything.",
+            "Push everything aside.",
+            "Clear just enough space.",
+            "Organize most of the desk.",
+            "Clean and organize everything before starting."
+        ]
+    },
+
+    {
+        trait:"C",
+        question:
+        "You planned to study from 8:00–9:00 p.m., but your favorite show just released a new episode. What do you do?",
+        answers:[
+            "Skip studying completely.",
+            "Watch first and study later.",
+            "Delay studying a little.",
+            "Study most of the hour.",
+            "Stick to my original study plan."
+        ]
+    },
+
+    {
+        trait:"C",
+        question:
+        "You've spent an hour on one difficult math problem and still can't solve it. What do you do?",
+        answers:[
+            "Give up.",
+            "Look up the full answer.",
+            "Ask someone to explain it.",
+            "Get a hint and keep trying.",
+            "Keep working until I understand it."
+        ]
+    },
+
+    {
+        trait:"C",
+        question:
+        "You're having lots of fun playing your favorite game, but you planned to start homework now. What do you do?",
+        answers:[
+            "Keep putting it off.",
+            "Wait another hour.",
+            "Finish my game first.",
+            "Finish what I'm doing in about 10 minutes.",
+            "Stop immediately and begin homework."
+        ]
+    },
+
+    {
+        trait:"E",
+        question:
+        "A party with around 300 people is happening this weekend. Would you go?",
+        answers:[
+            "Definitely not.",
+            "Probably not.",
+            "Not sure.",
+            "Somewhat excited.",
+            "Very excited."
+        ]
+    },
+
+    {
+        trait:"E",
+        question:
+        "You have the whole afternoon free. How would you most like to spend it?",
+        answers:[
+            "Completely alone.",
+            "Mostly alone.",
+            "Either is fine.",
+            "With a few friends.",
+            "With lots of people."
+        ]
+    },
+
+    {
+        trait:"N",
+        question:
+        "Tomorrow your schedule is packed with activities from morning until evening. How would you feel?",
+        answers:[
+            "Excited.",
+            "Comfortable.",
+            "A little stressed.",
+            "Very stressed.",
+            "Completely overwhelmed."
+        ]
+    }
+
+];
+
+/* ==================================================
+   TRAIT NAMES
+================================================== */
+
+const traitNames = {
+
+    O:"Openness",
+
+    C:"Conscientiousness",
+
+    E:"Extraversion",
+
+    A:"Agreeableness",
+
+    N:"Neuroticism"
+
+};
+
+
+/* ==================================================
+   MAXIMUM SCORES
+================================================== */
+
+const maximums = {
+
+    O:25,
+
+    C:30,
+
+    E:20,
+
+    A:15,
+
+    N:25
+
+};
+
+
+/* ==================================================
+   PERSONALITY EXPLANATIONS
+
+   EXACT RANGES YOU PROVIDED
+================================================== */
+
+const traitLevels = {
+
+    O:[
+        {
+            min:5,
+            max:8,
+            level:"Low O",
+            description:"You prefer familiar routines, practical ideas, and things you already know. You are realistic and tend to value tradition over change. While you may not seek out new experiences often, you are dependable and grounded."
+        },
+
+        {
+            min:9,
+            max:12,
+            level:"Low to Mid O",
+            description:"You are open to trying new things occasionally but usually like to stay within your comfort zone. You appreciate creativity when it has a practical purpose. You enjoy a balance between familiarity and small adventures."
+        },
+
+        {
+            min:13,
+            max:16,
+            level:"Mid O",
+            description:"You are both curious and practical, depending on the situation. You enjoy learning new things but also appreciate routines and stability. You can easily adapt to different environments and ways of thinking."
+        },
+
+        {
+            min:17,
+            max:20,
+            level:"Mid to High O",
+            description:"You enjoy exploring new ideas, cultures, and experiences. You are imaginative and often think outside the box when solving problems. While you appreciate structure, you also enjoy experimenting and being creative."
+        },
+
+        {
+            min:21,
+            max:25,
+            level:"High O",
+            description:"You are highly curious, creative, and imaginative. You love discovering new ideas, exploring different perspectives, and trying unique experiences. You are often drawn to innovation, art, and intellectual challenges."
+        }
+    ],
+
+
+    C:[
+        {
+            min:6,
+            max:10,
+            level:"Low C",
+            description:"You prefer flexibility over strict schedules and often make decisions in the moment. You may find planning ahead or staying organized challenging at times. Your spontaneous nature can make you adaptable and open to change."
+        },
+
+        {
+            min:11,
+            max:15,
+            level:"Low to Mid C",
+            description:"You can be organized when necessary but don't always stick to routines. You enjoy having some structure while still leaving room for flexibility. Deadlines may motivate you more than long-term planning."
+        },
+
+        {
+            min:16,
+            max:20,
+            level:"Mid C",
+            description:"You balance organization with adaptability. You can plan ahead and complete your responsibilities while also adjusting when situations change. Others often see you as reliable without being overly strict."
+        },
+
+        {
+            min:21,
+            max:25,
+            level:"Mid to High C",
+            description:"You are responsible, organized, and dependable. You usually plan your work carefully and enjoy checking tasks off your list. People can count on you to follow through with your commitments."
+        },
+
+        {
+            min:26,
+            max:30,
+            level:"High C",
+            description:"You are highly disciplined, hardworking, and goal-oriented. You enjoy creating plans, staying organized, and paying attention to details. You take your responsibilities seriously and rarely leave tasks unfinished."
+        }
+    ],
+
+
+    E:[
+        {
+            min:4,
+            max:6,
+            level:"Low E",
+            description:"You are naturally introverted and recharge by spending time alone. You usually prefer small groups or one-on-one conversations over large social gatherings. Quiet environments help you feel comfortable and focused."
+        },
+
+        {
+            min:7,
+            max:10,
+            level:"Low to Mid E",
+            description:"You enjoy socializing but also value plenty of personal time. You are comfortable in groups, though you don't always seek the spotlight. Your energy depends on the people and the situation."
+        },
+
+        {
+            min:11,
+            max:13,
+            level:"Mid E",
+            description:"You enjoy both social activities and quiet time. You can be outgoing when needed but also appreciate moments to yourself. Your personality adapts well to different social situations."
+        },
+
+        {
+            min:14,
+            max:17,
+            level:"Mid to High E",
+            description:"You are friendly, energetic, and enjoy meeting new people. You often feel energized by conversations, teamwork, and group activities. Others may see you as approachable and enthusiastic."
+        },
+
+        {
+            min:18,
+            max:20,
+            level:"High E",
+            description:"You are highly outgoing, expressive, and confident around others. You enjoy being the center of attention and thrive in busy social environments. Spending time with people gives you energy and excitement."
+        }
+    ],
+
+
+    A:[
+        {
+            min:3,
+            max:5,
+            level:"Low A",
+            description:"You are independent, honest, and willing to speak your mind. You are comfortable challenging ideas and making difficult decisions. While some may see you as blunt, you value fairness and honesty."
+        },
+
+        {
+            min:6,
+            max:8,
+            level:"Low to Mid A",
+            description:"You are kind but aren't afraid to disagree when you think something is important. You balance cooperation with standing up for your own opinions. You try to be fair without avoiding conflict completely."
+        },
+
+        {
+            min:9,
+            max:11,
+            level:"Mid A",
+            description:"You balance kindness with assertiveness. You care about others while also expressing your own thoughts and needs. You can cooperate well without losing your independence."
+        },
+
+        {
+            min:12,
+            max:14,
+            level:"Mid to High A",
+            description:"You are caring, supportive, and considerate of other people's feelings. You enjoy helping others and usually try to avoid unnecessary conflict. People often describe you as warm and easy to get along with."
+        },
+
+        {
+            min:15,
+            max:15,
+            level:"High A",
+            description:"You are highly compassionate, trusting, and empathetic. You naturally put others first and enjoy creating harmony within groups. Your kindness and willingness to help make you someone others often rely on."
+        }
+    ],
+
+
+    N:[
+        {
+            min:5,
+            max:8,
+            level:"Low N",
+            description:"You are emotionally steady and remain calm in stressful situations. You usually recover quickly from setbacks and don't worry for long. Others may see you as confident and resilient."
+        },
+
+        {
+            min:9,
+            max:13,
+            level:"Low to Mid N",
+            description:"You experience stress from time to time but usually manage it well. While challenges can affect you, you often regain your confidence quickly. You tend to keep your emotions balanced."
+        },
+
+        {
+            min:14,
+            max:17,
+            level:"Mid N",
+            description:"You experience a normal range of emotions and respond to challenges in a balanced way. Some situations may make you anxious or frustrated, while others don't affect you much. Your emotional reactions are generally typical for most people."
+        },
+
+        {
+            min:18,
+            max:21,
+            level:"Mid to High N",
+            description:"You are emotionally sensitive and may worry or overthink more than others. Stressful situations can affect your mood, but you are capable of recovering with support and time. Your awareness of emotions can also make you empathetic toward others."
+        },
+
+        {
+            min:22,
+            max:25,
+            level:"High N",
+            description:"You experience emotions intensely and are highly sensitive to stress, uncertainty, or criticism. You may overthink situations or become anxious more easily than others. At the same time, your emotional depth can help you understand and connect with people's feelings."
+        }
+    ]
+
+};
+
+
+/* ==================================================
+   STUDY TIPS
+
+   EXACT SCORE RANGES
+================================================== */
+
+const studyRecommendations = {
+
+    O:[
+        {
+            min:5,
+            max:8,
+            level:"Low O",
+            text:"Because your Openness score was low, you may learn best with clear, familiar, and practical methods. These study methods can help by keeping the learning process predictable and easy to follow. Try step-by-step notes, flashcards, worked examples, and lots of practice questions."
+        },
+
+        {
+            min:9,
+            max:12,
+            level:"Low to Mid O",
+            text:"Because your Openness score was low to mid, you may prefer structured studying while still enjoying some variety. These study methods can help by giving you a familiar structure without making every study session feel exactly the same. Try flashcards, practice questions, clear summaries, simple diagrams, and occasionally a new study method."
+        },
+
+        {
+            min:13,
+            max:16,
+            level:"Mid O",
+            text:"Because your Openness score was mid, you may benefit from a balance between structured and creative studying. These study methods can help you use both practical learning and curiosity. Try practice questions and flashcards alongside mind maps, teaching concepts to others, and making connections between different topics."
+        },
+
+        {
+            min:17,
+            max:20,
+            level:"Mid to High O",
+            text:"Because your Openness score was mid to high, you may learn especially well when you can explore ideas and make your own connections. These study methods can help keep learning interesting and give you room to think creatively. Try mind maps, creative explanations, real-world examples, and connecting different subjects."
+        },
+
+        {
+            min:21,
+            max:25,
+            level:"High O",
+            text:"Because your Openness score was high, you may enjoy studying when you can be creative, curious, and explore ideas beyond the basics. These study methods can help you stay interested while giving you opportunities to think differently. Try creating your own explanations, detailed concept maps, 'what if?' questions, and finding unexpected connections between topics."
+        }
+    ],
+
+
+    C:[
+        {
+            min:6,
+            max:10,
+            level:"Low C",
+            text:"Because your Conscientiousness score was low, you may prefer flexible studying rather than highly planned routines. These study methods can help by keeping your workload manageable without making your schedule feel overwhelming. Try short study sessions, simple to-do lists, practice questions, and setting one small goal at a time."
+        },
+
+        {
+            min:11,
+            max:15,
+            level:"Low to Mid C",
+            text:"Because your Conscientiousness score was low to mid, you may benefit from having some structure without making your schedule too strict. These study methods can help you stay organized while still giving you flexibility. Try short checklists, study timers, breaking assignments into smaller tasks, and setting simple deadlines."
+        },
+
+        {
+            min:16,
+            max:20,
+            level:"Mid C",
+            text:"Because your Conscientiousness score was mid, you can probably balance structure with flexibility. These study methods can help you stay organized without making your routine unnecessarily strict. Try realistic study plans, checklists, specific goals, and leaving some room to adjust your schedule."
+        },
+
+        {
+            min:21,
+            max:25,
+            level:"Mid to High C",
+            text:"Because your Conscientiousness score was mid to high, you may work especially well with organized and goal-focused study methods. These methods can help you use your natural ability to plan and stay consistent. Try detailed study schedules, organized notes, progress trackers, practice plans, and starting assignments early."
+        },
+
+        {
+            min:26,
+            max:30,
+            level:"High C",
+            text:"Because your Conscientiousness score was high, you may thrive with highly structured and systematic studying. These study methods can help you turn your organization and discipline into consistent progress. Try detailed schedules, carefully organized notes, spaced repetition, regular practice tests, and tracking your progress toward specific goals."
+        }
+    ],
+
+
+    E:[
+        {
+            min:4,
+            max:6,
+            level:"Low E",
+            text:"Because your Extraversion score was low, you may prefer studying independently in a quiet environment with few distractions. These study methods can help you concentrate without requiring constant interaction. Try reading, flashcards, practice questions, and writing your answers out independently."
+        },
+
+        {
+            min:7,
+            max:10,
+            level:"Low to Mid E",
+            text:"Because your Extraversion score was low to mid, you may enjoy some interaction while still needing plenty of independent study time. These study methods can help you combine quiet concentration with occasional social learning. Try studying alone most of the time, with occasional activities like explaining a concept to a friend."
+        },
+
+        {
+            min:11,
+            max:13,
+            level:"Mid E",
+            text:"Because your Extraversion score was mid, you may benefit from mixing independent and social study methods. These methods can help you switch between focused studying and active discussion. Try alternating between quiet study, talking through difficult concepts, studying with a friend, and teaching someone what you learned."
+        },
+
+        {
+            min:14,
+            max:17,
+            level:"Mid to High E",
+            text:"Because your Extraversion score was mid to high, you may find studying more engaging when you can interact and communicate. These study methods can help keep you actively involved in what you're learning. Try study groups, explaining concepts out loud, teaching classmates, discussing questions, and using verbal quizzes."
+        },
+
+        {
+            min:18,
+            max:20,
+            level:"High E",
+            text:"Because your Extraversion score was high, you may learn especially well through active and social studying. These methods can help you stay engaged instead of studying silently for long periods. Try study groups, teaching others, talking through problems, quiz games, and explaining difficult topics out loud."
+        }
+    ],
+
+
+    A:[
+        {
+            min:3,
+            max:5,
+            level:"Low A",
+            text:"Because your Agreeableness score was low, you may prefer studying independently and working through problems on your own. These study methods can help you challenge yourself without depending heavily on other people. Try individual practice questions, difficult problems, and checking your answers carefully."
+        },
+
+        {
+            min:6,
+            max:8,
+            level:"Low to Mid A",
+            text:"Because your Agreeableness score was low to mid, you may enjoy independent studying while still benefiting from other people when useful. These methods can help you stay independent while using cooperation when it actually helps. Try studying alone most of the time, while occasionally discussing difficult topics or comparing answers with a classmate."
+        },
+
+        {
+            min:9,
+            max:11,
+            level:"Mid A",
+            text:"Because your Agreeableness score was mid, you may benefit from a balance of independent and cooperative studying. These methods can help you work independently while still learning through other people. Try alternating between individual practice, study groups, peer discussions, and teaching someone a difficult concept."
+        },
+
+        {
+            min:12,
+            max:14,
+            level:"Mid to High A",
+            text:"Because your Agreeableness score was mid to high, you may enjoy learning through cooperation and helping others understand things. These methods can help you turn that enjoyment of cooperation into a useful study strategy. Try study groups, teaching classmates, explaining concepts to friends, and working together on challenging problems."
+        },
+
+        {
+            min:15,
+            max:15,
+            level:"High A",
+            text:"Because your Agreeableness score was high, you may find studying especially engaging when you can support and learn with other people. These methods can help you use cooperation and teaching as part of your learning process. Try teaching others, collaborative projects, study groups, peer tutoring, and explaining concepts together."
+        }
+    ],
+
+
+    N:[
+        {
+            min:5,
+            max:8,
+            level:"Low N",
+            text:"Because your Neuroticism score was low, you may stay relatively calm when studying, even when the material is difficult or stressful. These study methods can help you challenge yourself without needing to spend too much time worrying about preparation. Try challenging practice questions, timed quizzes, and studying in a normal environment."
+        },
+
+        {
+            min:9,
+            max:13,
+            level:"Low to Mid N",
+            text:"Because your Neuroticism score was low to mid, you may handle academic stress fairly well while still benefiting from preparation. These study methods can help you feel ready without making studying unnecessarily stressful. Try regular practice, simple study plans, and reviewing difficult material ahead of time."
+        },
+
+        {
+            min:14,
+            max:17,
+            level:"Mid N",
+            text:"Because your Neuroticism score was mid, you may benefit from a balance between preparation and flexibility. These study methods can help make difficult work feel more manageable while giving you room to adjust. Try breaking difficult work into smaller tasks, realistic study schedules, regular breaks, and practice before tests."
+        },
+
+        {
+            min:18,
+            max:21,
+            level:"Mid to High N",
+            text:"Because your Neuroticism score was mid to high, you may find uncertainty and academic pressure more stressful. These study methods can help by making your workload more predictable and manageable. Try starting assignments early, breaking work into small steps, using practice tests, and taking short calming breaks when you feel overwhelmed."
+        },
+
+        {
+            min:22,
+            max:25,
+            level:"High N",
+            text:"Because your Neuroticism score was high, you may find uncertainty and academic pressure especially stressful. These study methods can help reduce uncertainty and make difficult tasks feel more manageable. Try preparing early, using clear step-by-step plans, practicing before assessments, taking regular breaks, and focusing on one task at a time."
+        }
+    ]
+
+};
+
+
+/* ==================================================
+   SCREEN SWITCHING
+================================================== */
+
+function showScreen(id){
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen=>{
+            screen.classList.remove("active");
+        });
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ==================================================
+   NAME SCREEN
+================================================== */
+
+function showIntro(){
+
+    const input =
+        document.getElementById("nameInput");
+
+    const name =
+        input.value.trim();
+
+    if(name === ""){
+
+        input.focus();
+
+        return;
+
+    }
+
+    playerName = name;
+
+    document
+        .getElementById("welcomeTitle")
+        .textContent =
+        "Nice to meet you, " +
+        playerName +
+        "!";
+
+    showScreen("introScreen");
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+function startTest(){
+
+    currentQuestion = 0;
+
+    answers = [];
+
+    showQuestion();
+
+}
+
+
+/* ==================================================
+   SHOW QUESTION
+================================================== */
+
+function showQuestion(){
+
+    const q =
+        questions[currentQuestion];
+
+
+    document
+        .getElementById("questionNumber")
+        .textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        questions.length;
+
+
+    const progress =
+        ((currentQuestion + 1) /
+        questions.length) * 100;
+
+
+    document
+        .getElementById("progress")
+        .style.width =
+        progress + "%";
+
+
+    document
+        .getElementById("question")
+        .textContent =
+        q.question;
+
+
+    const answerBox =
+        document.getElementById("answers");
+
+
+    answerBox.innerHTML = "";
+
+
+    q.answers.forEach(
+        (answer,index)=>{
+
+            const button =
+                document.createElement("button");
+
+            button.type = "button";
+
+            button.className = "answer";
+
+            button.textContent =
+                (index + 1) +
+                ". " +
+                answer;
+
+
+            if(
+                answers[currentQuestion] ===
+                index + 1
+            ){
+
+                button.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            button.onclick = function(){
+
+                answers[currentQuestion] =
+                    index + 1;
+
+
+                answerBox
+                    .querySelectorAll(".answer")
+                    .forEach(btn=>{
+                        btn.classList.remove(
+                            "selected"
+                        );
+                    });
+
+
+                button.classList.add(
+                    "selected"
+                );
+
+            };
+
+
+            answerBox.appendChild(button);
+
+        }
+    );
+
+
+    const back =
+        document.getElementById("backButton");
+
+
+    if(currentQuestion === 0){
+
+        back.classList.add("hidden");
+
+    }else{
+
+        back.classList.remove("hidden");
+
+    }
+
+
+    document
+        .getElementById("nextButton")
+        .textContent =
+
+        currentQuestion ===
+        questions.length - 1
+
+        ? "See My Results"
+
+        : "Next";
+
+
+    showScreen("questionScreen");
+
+}
+
+
+/* ==================================================
+   NEXT
+================================================== */
+
+function nextQuestion(){
+
+    if(!answers[currentQuestion]){
+
+        alert(
+            "Please choose an answer first."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        currentQuestion <
+        questions.length - 1
+    ){
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }else{
+
+        calculateResults();
+
+    }
+
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+function previousQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* ==================================================
+   CALCULATE SCORES
+================================================== */
+
+function calculateResults(){
+
+    const scores = {
+
+        O:0,
+        C:0,
+        E:0,
+        A:0,
+        N:0
+
+    };
+
+
+    questions.forEach(
+        (question,index)=>{
+
+            const answer =
+                answers[index];
+
+
+            if(answer){
+
+                scores[
+                    question.trait
+                ] += answer;
+
+            }
+
+        }
+    );
+
+
+    displayResults(scores);
+
+}
+
+
+/* ==================================================
+   FIND PERSONALITY LEVEL
+================================================== */
+
+function getTraitResult(
+    trait,
+    score
+){
+
+    return traitLevels[
+        trait
+    ].find(
+        level =>
+        score >= level.min &&
+        score <= level.max
+    );
+
+}
+
+
+/* ==================================================
+   DISPLAY RESULTS
+================================================== */
+
+function displayResults(scores){
+
+    const resultBox =
+        document.getElementById("results");
+
+
+    resultBox.innerHTML = "";
+
+
+    document
+        .getElementById("resultsSubtitle")
+        .textContent =
+        playerName +
+        ", here's your O.C.E.A.N. personality profile.";
+
+
+    /* ==========================================
+       PERSONALITY SECTION
+    ========================================== */
+
+    const personalitySection =
+        document.createElement("div");
+
+    personalitySection.className =
+        "personality-section";
+
+
+    const personalityTitle =
+        document.createElement("h2");
+
+    personalityTitle.textContent =
+        "Your Personality";
+
+
+    personalitySection.appendChild(
+        personalityTitle
+    );
+
+
+    [
+        "O",
+        "C",
+        "E",
+        "A",
+        "N"
+    ].forEach(trait=>{
+
+        const score =
+            scores[trait];
+
+
+        const maximum =
+            maximums[trait];
+
+
+        const result =
+            getTraitResult(
+                trait,
+                score
+            );
+
+
+        const percentage =
+            Math.round(
+                (score / maximum) * 100
+            );
+
+
+        const box =
+            document.createElement("div");
+
+        box.className =
+            "result";
+
+
+        box.innerHTML = `
+
+            <div class="result-header">
+
+                <span>
+                    ${traitNames[trait]}
+                </span>
+
+                <span>
+                    ${score}/${maximum}
+                </span>
+
+            </div>
+
+
+            <div class="bar-background">
+
+                <div
+                    class="bar"
+                    style="width:${percentage}%"
+                ></div>
+
+            </div>
+
+
+            <div class="level">
+                ${result.level}
+            </div>
+
+
+            <p class="description">
+                ${result.description}
+            </p>
+
+        `;
+
+
+        personalitySection.appendChild(
+            box
+        );
+
+    });
+
+
+    resultBox.appendChild(
+        personalitySection
+    );
+
+
+    /* ==========================================
+       STUDY TIPS SECTION
+
+       THIS IS INTENTIONALLY AT THE BOTTOM
+       AFTER ALL FIVE PERSONALITY RESULTS.
+    ========================================== */
+
+    const studySection =
+        document.createElement("div");
+
+    studySection.className =
+        "study-section";
+
+
+    const studyTitle =
+        document.createElement("h2");
+
+    studyTitle.textContent =
+        "Your Personalized Study Tips";
+
+
+    studySection.appendChild(
+        studyTitle
+    );
+
+
+    const studyIntro =
+        document.createElement("p");
+
+    studyIntro.className =
+        "study-intro";
+
+    studyIntro.textContent =
+        "These study methods are based on the personality levels you received above. They are suggestions designed to help you experiment with different ways of learning.";
+
+    studySection.appendChild(
+        studyIntro
+    );
+
+
+    [
+        "O",
+        "C",
+        "E",
+        "A",
+        "N"
+    ].forEach(trait=>{
+
+        const score =
+            scores[trait];
+
+
+        const studyTip =
+            studyRecommendations[
+                trait
+            ].find(
+                tip =>
+                score >= tip.min &&
+                score <= tip.max
+            );
+
+
+        const tipBox =
+            document.createElement("div");
+
+        tipBox.className =
+            "study";
+
+
+        tipBox.innerHTML = `
+
+            <h3>
+                ${traitNames[trait]} Study Tips
+            </h3>
+
+            <div class="study-level">
+                ${studyTip.level}
+            </div>
+
+            <p>
+                ${studyTip.text}
+            </p>
+
+        `;
+
+
+        studySection.appendChild(
+            tipBox
+        );
+
+    });
+
+
+    resultBox.appendChild(
+        studySection
+    );
+
+
+    showScreen(
+        "resultsScreen"
+    );
+
+}
+
+
+/* ==================================================
+   RESTART
+================================================== */
+
+function restart(){
+
+    playerName = "";
+
+    currentQuestion = 0;
+
+    answers = [];
+
+
+    document
+        .getElementById("nameInput")
+        .value = "";
+
+
+    document
+        .getElementById("welcomeTitle")
+        .textContent =
+        "Welcome!";
+
+
+    showScreen(
+        "nameScreen"
+    );
+
+}
+
+
+/* ==================================================
+   ENTER KEY
+================================================== */
+
+document
+    .getElementById("nameInput")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                showIntro();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html></pre>
+        </body>
+    </html>
